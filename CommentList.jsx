@@ -1,32 +1,34 @@
+
 import React from "react";
-import Comment from "./Comment";
+import styled from "styled-components";
+import CommentListItem from "./CommentListItem";
 
-const comments = [
-    {
-        name: "하재현",
-        comment: "안녕하세요, 소통해요.",
+const Wrapper=styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content: center;
+    
+    &>*{
+        :not(:last-child) {
+            margin-bottom:16px;
 
-    },
-    {
-        name: "유재석",
-        comment: "리액트 재미있어요~!",
-    },
-    {
-        name: "강민경",
-        comment: "저도 리액트 배워보고 싶어요!!",
-    },
-];
+        }
+    }
+`;
 
 function CommentList(props) {
+    const { comments}= props;
+
     return (
-        <div>
-            {comments.map((comment) => {
-                return (
-                    <Comment name={comment.name} comment={comment.comment} />
-                );
+        <Wrapper>
+            {comments.map((comment,index)=> {
+                return <CommentListItem key={comment.id} comment={comment} />;
+                        
+
+                       
             })}
-            
-        </div>
+        </Wrapper>
     );
 }
 
